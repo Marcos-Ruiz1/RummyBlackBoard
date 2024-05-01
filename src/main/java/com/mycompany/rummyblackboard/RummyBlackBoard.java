@@ -11,6 +11,6 @@ package com.mycompany.rummyblackboard;
 public class RummyBlackBoard {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Proyecto rumyyyyy :8)");
     }
 }
