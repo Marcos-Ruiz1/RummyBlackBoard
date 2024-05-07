@@ -7,7 +7,7 @@ import fuentesDeConocimiento.FCDesmarcarConjuntos;
 import fuentesDeConocimiento.FCDividirConjunto;
 import fuentesDeConocimiento.FCEliminarConjunto;
 import fuentesDeConocimiento.FCEliminarFichas;
-import fuentesDeConocimiento.FuenteConocimiento;
+import interfaces.FuenteConocimiento;
 import java.util.HashMap;
 import java.util.Map;
 import interfaces.Observer;

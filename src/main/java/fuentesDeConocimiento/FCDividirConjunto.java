@@ -4,17 +4,17 @@
  */
 package fuentesDeConocimiento;
 
+import interfaces.FuenteConocimiento;
+
 /**
  *
  * @author natsu
  */
-public class FCDividirConjunto implements FuenteConocimiento{
+public class FCDividirConjunto extends FuenteConocimiento {
 
     @Override
     public void ejecutar() {
-        
-        
-        
+
     }
-    
+
 }

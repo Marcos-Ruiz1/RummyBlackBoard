@@ -4,15 +4,17 @@
  */
 package fuentesDeConocimiento;
 
+import interfaces.FuenteConocimiento;
+
 /**
  *
  * @author natsu
  */
-public class FCAgregarFicha implements FuenteConocimiento{
+public class FCAgregarFicha extends FuenteConocimiento {
 
     @Override
     public void ejecutar() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }
