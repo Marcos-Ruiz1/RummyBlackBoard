@@ -4,6 +4,7 @@
  */
 package fuentesDeConocimiento;
 
+import arqui.util.Datos;
 import interfaces.FuenteConocimiento;
 
 /**
@@ -13,7 +14,7 @@ import interfaces.FuenteConocimiento;
 public class FCDividirConjunto extends FuenteConocimiento {
 
     @Override
-    public void ejecutar() {
+    public void ejecutar(Datos datos) {
 
     }
 

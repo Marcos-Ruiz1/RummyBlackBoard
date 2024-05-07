@@ -1,6 +1,6 @@
-
 package controlador;
 
+import arqui.util.Datos;
 import fuentesDeConocimiento.FCAgregarConjunto;
 import fuentesDeConocimiento.FCAgregarFicha;
 import fuentesDeConocimiento.FCDesmarcarConjuntos;
@@ -14,18 +14,18 @@ import interfaces.Observer;
 
 /**
  *
- * @author 
+ * @author
  */
 public class ControladorPartida implements Observer {
-    
+
     private final Map<String, FuenteConocimiento> fuentesConocimiento;
-    
+
     private static ControladorPartida instancia;
-    
+
     private ControladorPartida() {
-        
+
         fuentesConocimiento = new HashMap();
-        
+
 //        Para agregar las fuentes de conocimiento que utilizara el controlador 
         fuentesConocimiento.put("agregarConjunto", new FCAgregarConjunto());
         fuentesConocimiento.put("agregarFicha", new FCAgregarFicha());
@@ -33,18 +33,18 @@ public class ControladorPartida implements Observer {
         fuentesConocimiento.put("eliminarConjunto", new FCEliminarConjunto());
         fuentesConocimiento.put("eliminarFichas", new FCEliminarFichas());
         fuentesConocimiento.put("desmarcarConjuntos", new FCDesmarcarConjuntos());
-        
+
     }
-    
-    public void agregarSinConjunto() {
-        fuentesConocimiento.get("agregarConjunto").ejecutar();
+
+    public void agregarSinConjunto(Datos datos) {
+        fuentesConocimiento.get("agregarConjunto").ejecutar(datos);
     }
-    
-    public ControladorPartida obtenerInstancia() {
+
+    public static ControladorPartida obtenerInstancia() {
         if (ControladorPartida.instancia == null) {
             ControladorPartida.instancia = new ControladorPartida();
         }
-        
+
         return ControladorPartida.instancia;
     }
 
@@ -52,5 +52,5 @@ public class ControladorPartida implements Observer {
     public void notificar() {
 
     }
-    
+
 }

@@ -4,7 +4,10 @@
  */
 package fuentesDeConocimiento;
 
+import DOMINIO.Conjunto;
+import arqui.util.Datos;
 import interfaces.FuenteConocimiento;
+import java.util.List;
 
 /**
  *
@@ -13,7 +16,15 @@ import interfaces.FuenteConocimiento;
 public class FCAgregarConjunto extends FuenteConocimiento {
 
     @Override
-    public void ejecutar() {
+    public void ejecutar(Datos d) {
+
+        List<Conjunto> conjuntos = (List<Conjunto>) d.getDatos();
+
+        for (Conjunto c : conjuntos) {
+
+            System.out.println(c.toString());
+
+        }
 
     }
 

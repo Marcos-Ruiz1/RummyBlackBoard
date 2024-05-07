@@ -5,6 +5,7 @@
 package interfaces;
 
 import DOMINIO.Partida;
+import arqui.util.Datos;
 import interaces.Blackboard;
 
 /**
@@ -19,5 +20,5 @@ public abstract class FuenteConocimiento {
         this.board = Partida.obtenerInstancia();
     }
 
-    public abstract void ejecutar();
+    public abstract void ejecutar(Datos datos);
 }
