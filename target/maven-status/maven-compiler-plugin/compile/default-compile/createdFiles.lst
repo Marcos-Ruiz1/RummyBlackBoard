@@ -1,2 +1,9 @@
 com\mycompany\rummyblackboard\RummyBlackBoard.class
 controlador\ControladorPartida.class
+interfaces\Observer.class
+fuentesDeConocimiento\FCEliminarConjunto.class
+fuentesDeConocimiento\FCAgregarConjunto.class
+fuentesDeConocimiento\FuenteConocimiento.class
+fuentesDeConocimiento\FCAgregarFicha.class
+fuentesDeConocimiento\FCEliminarFichas.class
+fuentesDeConocimiento\FCDividirConjunto.class

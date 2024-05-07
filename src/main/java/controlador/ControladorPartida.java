@@ -3,13 +3,14 @@ package controlador;
 
 import fuentesDeConocimiento.FCAgregarConjunto;
 import fuentesDeConocimiento.FCAgregarFicha;
+import fuentesDeConocimiento.FCDesmarcarConjuntos;
 import fuentesDeConocimiento.FCDividirConjunto;
 import fuentesDeConocimiento.FCEliminarConjunto;
 import fuentesDeConocimiento.FCEliminarFichas;
 import fuentesDeConocimiento.FuenteConocimiento;
 import java.util.HashMap;
 import java.util.Map;
-import interaces.Observer;
+import interfaces.Observer;
 
 /**
  *
@@ -31,6 +32,7 @@ public class ControladorPartida implements Observer {
         fuentesConocimiento.put("dividirConjunto", new FCDividirConjunto());
         fuentesConocimiento.put("eliminarConjunto", new FCEliminarConjunto());
         fuentesConocimiento.put("eliminarFichas", new FCEliminarFichas());
+        fuentesConocimiento.put("desmarcarConjuntos", new FCDesmarcarConjuntos());
         
     }
     
