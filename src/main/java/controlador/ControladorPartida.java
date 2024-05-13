@@ -7,10 +7,14 @@ import fuentesDeConocimiento.FCDesmarcarConjuntos;
 import fuentesDeConocimiento.FCDividirConjunto;
 import fuentesDeConocimiento.FCEliminarConjunto;
 import fuentesDeConocimiento.FCEliminarFichas;
+import fuentesDeConocimiento.FCGuardarPartida;
+import fuentesDeConocimiento.FCRestaurarPartida;
+import fuentesDeConocimiento.FCTerminarPartida;
+import fuentesDeConocimiento.FCTerminarTurno;
 import interfaces.FuenteConocimiento;
 import java.util.HashMap;
 import java.util.Map;
-import interfaces.Observer;
+import interaces.Observer;
 
 /**
  *
@@ -29,10 +33,14 @@ public class ControladorPartida implements Observer {
 //        Para agregar las fuentes de conocimiento que utilizara el controlador 
         fuentesConocimiento.put("agregarConjunto", new FCAgregarConjunto());
         fuentesConocimiento.put("agregarFicha", new FCAgregarFicha());
-        fuentesConocimiento.put("dividirConjunto", new FCDividirConjunto());
+        fuentesConocimiento.put("dividirCongregarFicha\"junto", new FCDividirConjunto());
         fuentesConocimiento.put("eliminarConjunto", new FCEliminarConjunto());
         fuentesConocimiento.put("eliminarFichas", new FCEliminarFichas());
         fuentesConocimiento.put("desmarcarConjuntos", new FCDesmarcarConjuntos());
+        fuentesConocimiento.put("guardarPartida", new FCGuardarPartida());
+        fuentesConocimiento.put("restaurarPartida", new FCRestaurarPartida());
+        fuentesConocimiento.put("TerminarPartida", new FCTerminarPartida());
+        fuentesConocimiento.put("TerminarTurno", new FCTerminarTurno());
 
     }
 
@@ -50,7 +58,7 @@ public class ControladorPartida implements Observer {
 
     @Override
     public void notificar() {
-
+  
     }
 
 }

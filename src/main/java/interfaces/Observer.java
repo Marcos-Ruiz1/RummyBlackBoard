@@ -4,10 +4,12 @@
  */
 package interfaces;
 
+import DOMINIO.*;
+
 /**
  *
  * @author marco
  */
 public interface Observer {
-    public void notificar();
+    public void notificar(Partida blackboard);
 }
