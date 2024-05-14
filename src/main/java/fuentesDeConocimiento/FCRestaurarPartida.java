@@ -4,7 +4,6 @@
  */
 package fuentesDeConocimiento;
 
-
 import arqui.util.Datos;
 import interfaces.FuenteConocimiento;
 
@@ -12,12 +11,15 @@ import interfaces.FuenteConocimiento;
  *
  * @author marco
  */
-public class FCRestaurarPartida extends FuenteConocimiento{
-    
-    
+public class FCRestaurarPartida extends FuenteConocimiento {
+
     @Override
     public void ejecutar(Datos d) {
-        
-        
+
+    }
+
+    @Override
+    public void ejecutar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -6,7 +6,6 @@ package fuentesDeConocimiento;
 
 import DOMINIO.Partida;
 import arqui.util.Datos;
-import interaces.Blackboard;
 import interaces.LogicaPartida;
 import interfaces.FuenteConocimiento;
 
@@ -14,18 +13,22 @@ import interfaces.FuenteConocimiento;
  *
  * @author marco
  */
-public class FCTerminarTurno extends FuenteConocimiento{
+public class FCTerminarTurno extends FuenteConocimiento {
 
-    Blackboard blackboard;
     private LogicaPartida lp;
-    
+
     @Override
     public void ejecutar(Datos d) {
         lp = Partida.obtenerInstancia();
-        
+
         lp.terminarTurno();
-        
-        blackboard.actualizarDatos();
+
+        this.board.actualizarDatos();
     }
-    
+
+    @Override
+    public void ejecutar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

@@ -5,7 +5,10 @@
 package fuentesDeConocimiento;
 
 import DOMINIO.Conjunto;
+import DOMINIO.ConjuntoGrupo;
+import DOMINIO.Ficha;
 import arqui.util.Datos;
+import interaces.LogicaConjunto;
 import interfaces.FuenteConocimiento;
 import java.util.List;
 
@@ -18,14 +21,18 @@ public class FCAgregarConjunto extends FuenteConocimiento {
     @Override
     public void ejecutar(Datos d) {
 
-        List<Conjunto> conjuntos = (List<Conjunto>) d.getDatos();
+        List<Ficha> fichas = (List<Ficha>) d.getDatos();
+//        Esto nomas esta para poder guardar las fichas en algun conjunto
+        LogicaConjunto c = new ConjuntoGrupo(fichas);
+        Conjunto conjuntoAGuardar = c.verificarColorFicha();
 
-        for (Conjunto c : conjuntos) {
+        this.board.actualizarDatos(conjuntoAGuardar);
 
-            System.out.println(c.toString());
+    }
 
-        }
-
+    @Override
+    public void ejecutar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

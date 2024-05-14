@@ -21,4 +21,6 @@ public abstract class FuenteConocimiento {
     }
 
     public abstract void ejecutar(Datos datos);
+
+    public abstract void ejecutar();
 }

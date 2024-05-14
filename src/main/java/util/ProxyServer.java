@@ -6,6 +6,7 @@ package util;
 
 import arqui.util.Datos;
 import controlador.ControladorPartida;
+import interaces.Blackboard;
 import java.io.ObjectInput;
 
 /**
@@ -13,6 +14,8 @@ import java.io.ObjectInput;
  * @author natsu
  */
 public class ProxyServer {
+
+    private static SocketRummy socket;
 
     private static ProxyServer instancia;
 
@@ -41,6 +44,18 @@ public class ProxyServer {
             ProxyServer.instancia = new ProxyServer();
         }
         return instancia;
+    }
+
+    public static void enviarDatos(Blackboard blackboard) {
+
+        try {
+
+            socket.sendData(blackboard);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private ProxyServer() {

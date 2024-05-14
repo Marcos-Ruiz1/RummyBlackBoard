@@ -1,5 +1,6 @@
 package controlador;
 
+import DOMINIO.Partida;
 import arqui.util.Datos;
 import fuentesDeConocimiento.FCAgregarConjunto;
 import fuentesDeConocimiento.FCAgregarFicha;
@@ -11,26 +12,29 @@ import fuentesDeConocimiento.FCGuardarPartida;
 import fuentesDeConocimiento.FCRestaurarPartida;
 import fuentesDeConocimiento.FCTerminarPartida;
 import fuentesDeConocimiento.FCTerminarTurno;
+import interaces.Blackboard;
+import interaces.Observador;
 import interfaces.FuenteConocimiento;
 import java.util.HashMap;
 import java.util.Map;
-import interaces.Observer;
+import util.ProxyServer;
 
 /**
  *
  * @author
  */
-public class ControladorPartida implements Observer {
+public class ControladorPartida implements Observador {
 
     private final Map<String, FuenteConocimiento> fuentesConocimiento;
 
     private static ControladorPartida instancia;
 
-    private ControladorPartida() {
+    private Datos tmpDatos;
 
+    private ControladorPartida() {
         fuentesConocimiento = new HashMap();
 
-//        Para agregar las fuentes de conocimiento que utilizara el controlador 
+        //        Para agregar las fuentes de conocimiento que utilizara el controlador 
         fuentesConocimiento.put("agregarConjunto", new FCAgregarConjunto());
         fuentesConocimiento.put("agregarFicha", new FCAgregarFicha());
         fuentesConocimiento.put("dividirCongregarFicha\"junto", new FCDividirConjunto());
@@ -42,9 +46,12 @@ public class ControladorPartida implements Observer {
         fuentesConocimiento.put("TerminarPartida", new FCTerminarPartida());
         fuentesConocimiento.put("TerminarTurno", new FCTerminarTurno());
 
+        //        Suscribir al publicar 
+        Partida.obtenerPublicador().agregarObservador(instancia);
     }
 
     public void agregarSinConjunto(Datos datos) {
+        this.tmpDatos = datos;
         fuentesConocimiento.get("agregarConjunto").ejecutar(datos);
     }
 
@@ -57,8 +64,18 @@ public class ControladorPartida implements Observer {
     }
 
     @Override
-    public void notificar() {
-  
+    public void notificar(Blackboard blackboard) {
+
+        String mensaje = blackboard.obtenerMensaje();
+
+        switch (mensaje) {
+            case "Agregar conjunto" ->
+                fuentesConocimiento.get("eliminarFichas").ejecutar(this.tmpDatos);
+            default ->
+                ProxyServer.enviarDatos(Partida.obtenerInstancia());
+
+        }
+
     }
 
 }

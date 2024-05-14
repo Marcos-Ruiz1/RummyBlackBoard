@@ -52,8 +52,6 @@ public class SocketRummy extends Thread {
 
             while (true) {
 
-                d = (Datos) input.readObject();
-
                 ProxyServer.obtenerInstancia().notificar(input);
 
             }
