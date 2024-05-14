@@ -24,13 +24,13 @@ import util.ProxyServer;
  * @author
  */
 public class ControladorPartida implements Observador {
-
+    
     private final Map<String, FuenteConocimiento> fuentesConocimiento;
-
+    
     private static ControladorPartida instancia;
-
+    
     private Datos tmpDatos;
-
+    
     private ControladorPartida() {
         fuentesConocimiento = new HashMap();
 
@@ -49,33 +49,38 @@ public class ControladorPartida implements Observador {
         //        Suscribir al publicar 
         Partida.obtenerPublicador().agregarObservador(instancia);
     }
-
+    
     public void agregarSinConjunto(Datos datos) {
         this.tmpDatos = datos;
         fuentesConocimiento.get("agregarConjunto").ejecutar(datos);
     }
-
+    
+    public void agregarConConjunto(Datos datos) {
+        this.tmpDatos = datos;
+        fuentesConocimiento.get("agregarFicha").ejecutar(datos);
+    }
+    
     public static ControladorPartida obtenerInstancia() {
         if (ControladorPartida.instancia == null) {
             ControladorPartida.instancia = new ControladorPartida();
         }
-
+        
         return ControladorPartida.instancia;
     }
-
+    
     @Override
     public void notificar(Blackboard blackboard) {
-
+        
         String mensaje = blackboard.obtenerMensaje();
-
+        
         switch (mensaje) {
             case "Agregar conjunto" ->
                 fuentesConocimiento.get("eliminarFichas").ejecutar(this.tmpDatos);
             default ->
                 ProxyServer.enviarDatos(Partida.obtenerInstancia());
-
+            
         }
-
+        
     }
-
+    
 }
