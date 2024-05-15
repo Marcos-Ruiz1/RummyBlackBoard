@@ -4,9 +4,11 @@
  */
 package fuentesDeConocimiento;
 
+import DOMINIO.Partida;
 import interfaces.FuenteConocimiento;
 
 import arqui.util.Datos;
+import interaces.LogicaPartida;
 
 /**
  *
@@ -14,9 +16,14 @@ import arqui.util.Datos;
  */
 public class FCGuardarPartida extends FuenteConocimiento {
 
+    LogicaPartida lp;
     @Override
     public void ejecutar(Datos datos) {
 
+        lp = Partida.obtenerInstancia();
+        lp.guardarPartida();
+        
+        this.board.actualizarDatos("terminarPartida");
     }
 
     @Override

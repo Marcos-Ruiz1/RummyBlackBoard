@@ -7,11 +7,11 @@ package fuentesDeConocimiento;
 import interfaces.FuenteConocimiento;
 import DOMINIO.Tablero;
 import DOMINIO.Jugador;
+import DOMINIO.Partida;
 import arqui.util.Datos;
 import interaces.LogicaTablero;
-import interaces.LogicaConjunto;
 import interaces.LogicaJugador;
-import interaces.Blackboard;
+import interaces.PartidaDTO;
 
 /**
  *
@@ -20,28 +20,28 @@ import interaces.Blackboard;
 public class FCDesmarcarConjuntos extends FuenteConocimiento {
 
     private LogicaTablero lt;
-    private LogicaConjunto lc;
     private LogicaJugador lj;
-    Blackboard blackboard;
-
+    private PartidaDTO pdto;
+    
     @Override
     public void ejecutar(Datos datos) {
+        
         lt = (LogicaTablero) Tablero.obtenerInstancia();
-        lj = new Jugador();
-
+        pdto = (PartidaDTO) Partida.obtenerInstancia();
         //Validar conjuntos
         lt.validarConjuntos();
 
+        Jugador jugador = pdto.obtenerJugador();
+        lj = jugador;
         //Validar 30 puntos si es el primer turno del jugador
         if (lj.esPrimerTurno()) {
-//            lc.validar30Puntos();
+            lt.validar30Puntos();
         }
 
         //Desmarcar los conjuntos
         lt.desmarcarConjuntos();
 
-        //Actualizar el blackboard
-//        blackboard.actualizarDatos(lt);
+        this.board.actualizarDatos("guardarPartida");
     }
 
     @Override

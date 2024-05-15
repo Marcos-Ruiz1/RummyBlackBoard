@@ -1,5 +1,6 @@
 package controlador;
 
+import DOMINIO.Jugador;
 import DOMINIO.Partida;
 import arqui.util.Datos;
 import fuentesDeConocimiento.FCAgregarConjunto;
@@ -14,6 +15,7 @@ import fuentesDeConocimiento.FCTerminarPartida;
 import fuentesDeConocimiento.FCTerminarTurno;
 import interaces.Blackboard;
 import interaces.Observador;
+import interaces.PartidaDTO;
 import interfaces.FuenteConocimiento;
 import java.util.HashMap;
 import java.util.Map;
@@ -70,14 +72,29 @@ public class ControladorPartida implements Observador {
     
     @Override
     public void notificar(Blackboard blackboard) {
-        
+       
         String mensaje = blackboard.obtenerMensaje();
         
         switch (mensaje) {
             case "Agregar conjunto" ->
                 fuentesConocimiento.get("eliminarFichas").ejecutar(this.tmpDatos);
+            case "guardarPartida" ->
+                fuentesConocimiento.get("guardarPartida").ejecutar();
+            case "terminarTurno" ->{
+                PartidaDTO pdto;
+                pdto = (PartidaDTO) Partida.obtenerInstancia();
+                Jugador jugador = pdto.obtenerJugador();
+                
+                if(jugador.tieneFichas()){
+                    fuentesConocimiento.get("terminarPartida").ejecutar();
+                }else{
+                    fuentesConocimiento.get("terminarTurno").ejecutar();
+                }
+            }
+                
             default ->
                 ProxyServer.enviarDatos(Partida.obtenerInstancia());
+             
             
         }
         

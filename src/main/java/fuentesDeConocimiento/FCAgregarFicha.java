@@ -16,6 +16,8 @@ public class FCAgregarFicha extends FuenteConocimiento {
     @Override
     public void ejecutar(Datos datos) {
 
+//        List<Ficha> 
+        
     }
 
     @Override

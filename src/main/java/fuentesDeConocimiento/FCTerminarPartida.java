@@ -4,7 +4,9 @@
  */
 package fuentesDeConocimiento;
 
+import DOMINIO.Partida;
 import arqui.util.Datos;
+import interaces.LogicaPartida;
 import interfaces.FuenteConocimiento;
 
 /**
@@ -13,9 +15,15 @@ import interfaces.FuenteConocimiento;
  */
 public class FCTerminarPartida extends FuenteConocimiento {
 
+    private LogicaPartida lp;
+    
     @Override
     public void ejecutar(Datos d) {
-
+        lp = Partida.obtenerInstancia();
+        
+        lp.terminarJuego();
+        
+        this.board.actualizarDatos();
     }
 
     @Override
