@@ -6,9 +6,11 @@ package fuentesDeConocimiento;
 
 import DOMINIO.Conjunto;
 import DOMINIO.Ficha;
+import DOMINIO.Tablero;
 import arqui.util.AgregarFichaConjunto;
 import arqui.util.Datos;
 import interaces.LogicaJugador;
+import interaces.LogicaTablero;
 import interfaces.FuenteConocimiento;
 
 /**
@@ -32,6 +34,9 @@ public class FCAgregarFicha extends FuenteConocimiento {
         Ficha ficha = agregarFichaConjunto.getFicha();
         boolean delante = agregarFichaConjunto.isDelante();
         Conjunto c = conjunto.agregarFicha(ficha, delante);
+
+        LogicaTablero logicaTablero = Tablero.obtenerLogica();
+        logicaTablero.agregarFichaConjunto(conjunto, ficha, delante);
 
         this.board.actualizarDatos(c, "Eliminar Conjunto");
     }

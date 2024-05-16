@@ -31,7 +31,7 @@ public class ControladorPartida implements Observador {
 
     private static ControladorPartida instancia;
 
-    private Datos tmpDatos;
+    private Datos<?> tmpDatos;
 
     private ControladorPartida() {
         fuentesConocimiento = new HashMap();
@@ -88,6 +88,11 @@ public class ControladorPartida implements Observador {
 
         String mensaje = blackboard.obtenerMensaje();
 
+        if (blackboard.hayMensajeError()) {
+            ProxyServer.enviarDatos(blackboard);
+            return;
+        }
+
         switch (mensaje) {
             case "Eliminar fichas" ->
                 fuentesConocimiento.get("eliminarFichas").ejecutar(this.tmpDatos);
@@ -103,9 +108,9 @@ public class ControladorPartida implements Observador {
                 Jugador jugador = pdto.obtenerJugador();
 
                 if (jugador.tieneFichas()) {
-                    fuentesConocimiento.get("terminarPartida").ejecutar();
+                    fuentesConocimiento.get("TerminarTurno").ejecutar();
                 } else {
-                    fuentesConocimiento.get("terminarTurno").ejecutar();
+                    fuentesConocimiento.get("TerminarPartida").ejecutar();
                 }
             }
 

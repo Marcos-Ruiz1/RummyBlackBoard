@@ -29,7 +29,7 @@ public class FCEliminarFichas extends FuenteConocimiento {
             fichas = (List<Ficha>) datos.getDatos();
         }
 
-        LogicaMazo logicaMazo = this.board.obtenerLogicaMazoJugadorActual();;
+        LogicaMazo logicaMazo = this.board.obtenerLogicaMazoJugadorActual();
         for (Ficha ficha : fichas) {
             logicaMazo.eliminarFichasJugador(ficha);
         }
