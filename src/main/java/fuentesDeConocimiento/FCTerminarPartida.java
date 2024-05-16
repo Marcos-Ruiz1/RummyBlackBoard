@@ -19,16 +19,16 @@ public class FCTerminarPartida extends FuenteConocimiento {
     
     @Override
     public void ejecutar(Datos d) {
+        
+    }
+
+    @Override
+    public void ejecutar() {
         lp = Partida.obtenerInstancia();
         
         lp.terminarJuego();
         
         this.board.actualizarDatos();
-    }
-
-    @Override
-    public void ejecutar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

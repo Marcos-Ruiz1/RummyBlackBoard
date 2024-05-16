@@ -48,8 +48,7 @@ public class ControladorPartida implements Observador {
         fuentesConocimiento.put("TerminarPartida", new FCTerminarPartida());
         fuentesConocimiento.put("TerminarTurno", new FCTerminarTurno());
 
-        //        Suscribir al publicar 
-        Partida.obtenerPublicador().agregarObservador(instancia);
+       
     }
     
     public void agregarSinConjunto(Datos datos) {
@@ -62,9 +61,18 @@ public class ControladorPartida implements Observador {
         fuentesConocimiento.get("agregarFicha").ejecutar(datos);
     }
     
+    public void desmarcarConjuntos(){
+        fuentesConocimiento.get("desmarcarConjuntos").ejecutar();
+    }
+    
+    public void restuararPartida(){
+        fuentesConocimiento.get("restaurarPartida").ejecutar();
+    }
     public static ControladorPartida obtenerInstancia() {
         if (ControladorPartida.instancia == null) {
             ControladorPartida.instancia = new ControladorPartida();
+             //        Suscribir al publicar 
+            Partida.obtenerPublicador().agregarObservador(instancia);
         }
         
         return ControladorPartida.instancia;
@@ -74,13 +82,13 @@ public class ControladorPartida implements Observador {
     public void notificar(Blackboard blackboard) {
        
         String mensaje = blackboard.obtenerMensaje();
-        
+      
         switch (mensaje) {
             case "Agregar conjunto" ->
                 fuentesConocimiento.get("eliminarFichas").ejecutar(this.tmpDatos);
             case "guardarPartida" ->
                 fuentesConocimiento.get("guardarPartida").ejecutar();
-            case "terminarTurno" ->{
+            case "terminarPartida" ->{
                 PartidaDTO pdto;
                 pdto = (PartidaDTO) Partida.obtenerInstancia();
                 Jugador jugador = pdto.obtenerJugador();

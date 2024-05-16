@@ -19,16 +19,15 @@ public class FCGuardarPartida extends FuenteConocimiento {
     LogicaPartida lp;
     @Override
     public void ejecutar(Datos datos) {
-
-        lp = Partida.obtenerInstancia();
-        lp.guardarPartida();
         
-        this.board.actualizarDatos("terminarPartida");
     }
 
     @Override
     public void ejecutar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        lp = Partida.obtenerInstancia();
+        lp.guardarPartida();
+        
+        this.board.actualizarDatos("terminarPartida");
     }
 
 }

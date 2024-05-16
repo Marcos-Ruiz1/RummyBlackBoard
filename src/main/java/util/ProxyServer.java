@@ -27,6 +27,10 @@ public class ProxyServer {
             switch (d.getMensaje()) {
                 case "Agregar sin conjunto" ->
                     ControladorPartida.obtenerInstancia().agregarSinConjunto(d);
+                case "terminar turno" ->
+                    ControladorPartida.obtenerInstancia().desmarcarConjuntos();
+                case "restaurar partida" ->
+                    ControladorPartida.obtenerInstancia().restuararPartida();
                 default ->
                     throw new AssertionError();
             }

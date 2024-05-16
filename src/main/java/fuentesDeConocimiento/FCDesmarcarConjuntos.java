@@ -12,12 +12,16 @@ import arqui.util.Datos;
 import interaces.LogicaTablero;
 import interaces.LogicaJugador;
 import interaces.PartidaDTO;
+import exceptions.ConjuntoNoValidoException;
+import exceptions.PuntosNoValidosException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author marco
  */
-public class FCDesmarcarConjuntos extends FuenteConocimiento {
+public class FCDesmarcarConjuntos extends FuenteConocimiento{
 
     private LogicaTablero lt;
     private LogicaJugador lj;
@@ -25,28 +29,37 @@ public class FCDesmarcarConjuntos extends FuenteConocimiento {
     
     @Override
     public void ejecutar(Datos datos) {
-        
+       
+    }
+
+    @Override
+    public void ejecutar() {
         lt = (LogicaTablero) Tablero.obtenerInstancia();
         pdto = (PartidaDTO) Partida.obtenerInstancia();
-        //Validar conjuntos
-        lt.validarConjuntos();
+        try {
+            //Validar conjuntos
+            lt.validarConjuntos();
+        } catch (ConjuntoNoValidoException e) {
+            System.err.print(e);
+            this.board.actualizarMensajeError(e.toString());
+        }
 
         Jugador jugador = pdto.obtenerJugador();
         lj = jugador;
         //Validar 30 puntos si es el primer turno del jugador
         if (lj.esPrimerTurno()) {
-            lt.validar30Puntos();
+            try {
+                lt.validar30Puntos();
+            } catch (PuntosNoValidosException e) {
+               System.err.print(e);
+                this.board.actualizarMensajeError(e.toString());
+            }
         }
 
         //Desmarcar los conjuntos
         lt.desmarcarConjuntos();
 
         this.board.actualizarDatos("guardarPartida");
-    }
-
-    @Override
-    public void ejecutar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
