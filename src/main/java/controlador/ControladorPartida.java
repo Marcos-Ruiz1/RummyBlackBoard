@@ -14,16 +14,16 @@ import fuentesDeConocimiento.FCRestaurarPartida;
 import fuentesDeConocimiento.FCTerminarPartida;
 import fuentesDeConocimiento.FCTerminarTurno;
 import interaces.Blackboard;
-import interaces.Observador;
 import interaces.PartidaDTO;
 import interfaces.FuenteConocimiento;
+import interaces.Observador;
 import java.util.HashMap;
 import java.util.Map;
 import util.ProxyServer;
 
 /**
  *
- * @author
+ * @author Dios todo poderoso
  */
 public class ControladorPartida implements Observador {
 
@@ -48,7 +48,6 @@ public class ControladorPartida implements Observador {
         fuentesConocimiento.put("TerminarPartida", new FCTerminarPartida());
         fuentesConocimiento.put("TerminarTurno", new FCTerminarTurno());
 
-       
     }
 
     public void agregarSinConjunto(Datos datos) {
@@ -60,12 +59,12 @@ public class ControladorPartida implements Observador {
         this.tmpDatos = datos;
         fuentesConocimiento.get("agregarFicha").ejecutar(datos);
     }
-    
-    public void desmarcarConjuntos(){
+
+    public void desmarcarConjuntos() {
         fuentesConocimiento.get("desmarcarConjuntos").ejecutar();
     }
-    
-    public void restuararPartida(){
+
+    public void restuararPartida() {
         fuentesConocimiento.get("restaurarPartida").ejecutar();
     }
 
@@ -77,8 +76,8 @@ public class ControladorPartida implements Observador {
     public static ControladorPartida obtenerInstancia() {
         if (ControladorPartida.instancia == null) {
             ControladorPartida.instancia = new ControladorPartida();
-             //        Suscribir al publicar 
-            Partida.obtenerPublicador().agregarObservador(instancia);
+            //        Suscribir al publicar 
+            Partida.obtenerPublicador().agregarObservador(ControladorPartida.instancia);
         }
 
         return ControladorPartida.instancia;
@@ -86,9 +85,9 @@ public class ControladorPartida implements Observador {
 
     @Override
     public void notificar(Blackboard blackboard) {
-       
+
         String mensaje = blackboard.obtenerMensaje();
-      
+
         switch (mensaje) {
             case "Eliminar fichas" ->
                 fuentesConocimiento.get("eliminarFichas").ejecutar(this.tmpDatos);
@@ -98,18 +97,18 @@ public class ControladorPartida implements Observador {
                 fuentesConocimiento.get("eliminarFichas").ejecutar(this.tmpDatos);
             case "guardarPartida" ->
                 fuentesConocimiento.get("guardarPartida").ejecutar();
-            case "terminarPartida" ->{
+            case "terminarPartida" -> {
                 PartidaDTO pdto;
                 pdto = (PartidaDTO) Partida.obtenerInstancia();
                 Jugador jugador = pdto.obtenerJugador();
-                
-                if(jugador.tieneFichas()){
+
+                if (jugador.tieneFichas()) {
                     fuentesConocimiento.get("terminarPartida").ejecutar();
-                }else{
+                } else {
                     fuentesConocimiento.get("terminarTurno").ejecutar();
                 }
             }
-                
+
             default ->
                 ProxyServer.enviarDatos(Partida.obtenerInstancia());
 
