@@ -4,11 +4,14 @@
  */
 package fuentesDeConocimiento;
 
+import DOMINIO.Tablero;
 import arqui.util.Datos;
 import arqui.util.DividirConjuntoDatos;
-import interaces.LogicaConjunto;
 import interaces.LogicaJugador;
+import interaces.LogicaTablero;
 import interfaces.FuenteConocimiento;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -28,11 +31,15 @@ public class FCDividirConjunto extends FuenteConocimiento {
 
         DividirConjuntoDatos dividirConjuntoDatos = (DividirConjuntoDatos) datos.getDatos();
 
-        LogicaConjunto conjunto = dividirConjuntoDatos.getConjunto();
-        conjunto.
-        
-        int[] rango = dividirConjuntoDatos.getRango();
+        LogicaTablero logicaTablero = Tablero.obtenerInstancia();
 
+        Map<String, Integer> mapa = new HashMap();
+        mapa.put("inicio", dividirConjuntoDatos.getRango()[0]);
+        mapa.put("final", dividirConjuntoDatos.getRango()[1]);
+
+        logicaTablero.dividirConjunto(dividirConjuntoDatos.getConjunto(), mapa);
+
+        this.board.actualizarDatos("Finalizo");
     }
 
     @Override
