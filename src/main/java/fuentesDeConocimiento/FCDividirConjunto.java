@@ -5,6 +5,9 @@
 package fuentesDeConocimiento;
 
 import arqui.util.Datos;
+import arqui.util.DividirConjuntoDatos;
+import interaces.LogicaConjunto;
+import interaces.LogicaJugador;
 import interfaces.FuenteConocimiento;
 
 /**
@@ -15,6 +18,20 @@ public class FCDividirConjunto extends FuenteConocimiento {
 
     @Override
     public void ejecutar(Datos datos) {
+
+        LogicaJugador jugador = this.board.obtenerLogicaJugadorActual();
+
+        if (jugador.esPrimerTurno()) {
+            this.board.actualizarMensajeError("No puedes dividir en el primer turno");
+            return;
+        }
+
+        DividirConjuntoDatos dividirConjuntoDatos = (DividirConjuntoDatos) datos.getDatos();
+
+        LogicaConjunto conjunto = dividirConjuntoDatos.getConjunto();
+        conjunto.
+        
+        int[] rango = dividirConjuntoDatos.getRango();
 
     }
 

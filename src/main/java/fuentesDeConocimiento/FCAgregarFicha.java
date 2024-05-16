@@ -4,7 +4,11 @@
  */
 package fuentesDeConocimiento;
 
+import DOMINIO.Conjunto;
+import DOMINIO.Ficha;
+import arqui.util.AgregarFichaConjunto;
 import arqui.util.Datos;
+import interaces.LogicaJugador;
 import interfaces.FuenteConocimiento;
 
 /**
@@ -16,8 +20,20 @@ public class FCAgregarFicha extends FuenteConocimiento {
     @Override
     public void ejecutar(Datos datos) {
 
-//        List<Ficha> 
-        
+        LogicaJugador logica = this.board.obtenerLogicaJugadorActual();
+
+        if (logica.esPrimerTurno()) {
+            this.board.actualizarMensajeError("No puedes agregar fichas en tu primer turno");
+            return;
+        }
+
+        AgregarFichaConjunto agregarFichaConjunto = (AgregarFichaConjunto) datos.getDatos();
+        Conjunto conjunto = agregarFichaConjunto.getConjunto();
+        Ficha ficha = agregarFichaConjunto.getFicha();
+        boolean delante = agregarFichaConjunto.isDelante();
+        Conjunto c = conjunto.agregarFicha(ficha, delante);
+
+        this.board.actualizarDatos(c, "Eliminar Conjunto");
     }
 
     @Override

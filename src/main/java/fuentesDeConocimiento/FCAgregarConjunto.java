@@ -26,7 +26,7 @@ public class FCAgregarConjunto extends FuenteConocimiento {
         LogicaConjunto c = new ConjuntoGrupo(fichas);
         Conjunto conjuntoAGuardar = c.verificarColorFicha();
 
-        this.board.actualizarDatos(conjuntoAGuardar);
+        this.board.actualizarDatos(conjuntoAGuardar, "Eliminar fichas");
 
     }
 
