@@ -101,11 +101,11 @@ public class ControladorPartida implements Observador {
                 PartidaDTO pdto;
                 pdto = (PartidaDTO) Partida.obtenerInstancia();
                 Jugador jugador = pdto.obtenerJugador();
-
-                if (jugador.tieneFichas()) {
-                    fuentesConocimiento.get("terminarPartida").ejecutar();
-                } else {
-                    fuentesConocimiento.get("terminarTurno").ejecutar();
+                
+                 if(jugador.tieneFichas()){
+                    fuentesConocimiento.get("TerminarTurno").ejecutar();
+                }else{
+                    fuentesConocimiento.get("TerminarTurno").ejecutar();
                 }
             }
 
