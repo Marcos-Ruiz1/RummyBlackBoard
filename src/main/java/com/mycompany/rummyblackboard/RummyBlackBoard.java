@@ -3,11 +3,11 @@
  */
 package com.mycompany.rummyblackboard;
 
-import DOMINIO.Comodin;
 import DOMINIO.Conjunto;
 import DOMINIO.ConjuntoGrupo;
 import DOMINIO.Ficha;
 import DOMINIO.FichaNumerica;
+import DOMINIO.GrupoFicha;
 import DOMINIO.Jugador;
 import DOMINIO.Mazo;
 import DOMINIO.Partida;
@@ -34,11 +34,14 @@ public class RummyBlackBoard {
         jugador2.setTurno(false);
         Mazo mazo1 = new Mazo();
         Ficha fichamazo1 = new FichaNumerica((byte) 13);
+        fichamazo1.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo2 = new FichaNumerica((byte) 14);
         Ficha fichamazo3 = new FichaNumerica((byte) 15);
         Ficha fichamazo4 = new FichaNumerica((byte) 16);
         Ficha fichamazo5 = new FichaNumerica((byte) 17);
+        fichamazo5.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo6 = new FichaNumerica((byte) 18);
+        fichamazo6.setGrupoFicha(GrupoFicha.ROJO);
         List<Ficha> fichasenmazo = new ArrayList<>();
         fichasenmazo.add(fichamazo1);
         fichasenmazo.add(fichamazo2);
@@ -81,16 +84,14 @@ public class RummyBlackBoard {
         FichaNumerica fichanumerica1 = new FichaNumerica();
         fichanumerica1.setNumero((byte) 10);
         FichaNumerica fichanumerica2 = new FichaNumerica();
-        fichanumerica2.setNumero((byte) 10);
-        Comodin fichaComodin = new Comodin();
+        fichanumerica2.setNumero((byte) 11);
         FichaNumerica fichanumerica3 = new FichaNumerica();
-        fichanumerica3.setNumero((byte) 10);
+        fichanumerica3.setNumero((byte) 12);
 
         List<Ficha> fichas = new ArrayList<>();
 
         fichas.add(fichanumerica1);
         fichas.add(fichanumerica2);
-        fichas.add(fichaComodin);
         fichas.add(fichanumerica3);
 
         //Tablero y conjuntos agregados al tablero
