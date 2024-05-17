@@ -64,10 +64,10 @@ public class ControladorPartida implements Observador {
         fuentesConocimiento.get("agregarFicha").ejecutar(datos);
     }
 
-    public void agregarFichaAMazo(){
+    public void agregarFichaAMazo() {
         fuentesConocimiento.get("agregarFichaAMazo").ejecutar();
     }
-    
+
     public void desmarcarConjuntos() {
         fuentesConocimiento.get("desmarcarConjuntos").ejecutar();
     }
@@ -128,7 +128,8 @@ public class ControladorPartida implements Observador {
                 Jugador jugador = pdto.obtenerJugador();
 
                 if (jugador.esPrimerTurno()) {
-                    ProxyServer.enviarDatos(Partida.obtenerInstancia());
+                    ProxyServer.enviarDatos(new PartidaDTOClazz(Partida.obtenerInstancia()),
+                            Partida.obtenerInstancia().getNumeroJugador());
                 } else {
                     fuentesConocimiento.get("TerminarTurno").ejecutar();
                 }

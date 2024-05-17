@@ -15,7 +15,6 @@ import interaces.LogicaPila;
 import interaces.PartidaDTO;
 import interaces.PilaDTO;
 import interfaces.FuenteConocimiento;
-import util.ProxyServer;
 
 /**
  *
@@ -42,7 +41,7 @@ public class FCAgregarFichaAMazo extends FuenteConocimiento {
             System.err.print(e);
             this.board.actualizarMensajeError(e.toString());
         }
-        
+
         Ficha ficha = pilaDTO.obtenerFicha();
         Jugador jugador = partidaDTO.obtenerJugador();
         logicaJugador = jugador;
@@ -54,7 +53,7 @@ public class FCAgregarFichaAMazo extends FuenteConocimiento {
             this.board.actualizarDatos("TerminarTurno");
         } else {
             // Si lo es, enviara los datos al server
-            ProxyServer.enviarDatos(board);
+            this.board.actualizarDatos("Finalizar");
         }
     }
 }
