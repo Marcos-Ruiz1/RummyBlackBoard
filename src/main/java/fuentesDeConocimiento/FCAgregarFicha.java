@@ -33,12 +33,11 @@ public class FCAgregarFicha extends FuenteConocimiento {
         Conjunto conjunto = agregarFichaConjunto.getConjunto();
         Ficha ficha = agregarFichaConjunto.getFicha();
         boolean delante = agregarFichaConjunto.isDelante();
-        Conjunto c = conjunto.agregarFicha(ficha, delante);
 
         LogicaTablero logicaTablero = Tablero.obtenerLogica();
         logicaTablero.agregarFichaConjunto(conjunto, ficha, delante);
 
-        this.board.actualizarDatos(c, "Eliminar Conjunto");
+        this.board.actualizarDatos("Eliminar conjunto");
     }
 
     @Override
