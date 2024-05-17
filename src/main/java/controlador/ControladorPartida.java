@@ -5,6 +5,7 @@ import DOMINIO.Partida;
 import arqui.util.Datos;
 import fuentesDeConocimiento.FCAgregarConjunto;
 import fuentesDeConocimiento.FCAgregarFicha;
+import fuentesDeConocimiento.FCAgregarFichaAMazo;
 import fuentesDeConocimiento.FCDesmarcarConjuntos;
 import fuentesDeConocimiento.FCDividirConjunto;
 import fuentesDeConocimiento.FCEliminarConjunto;
@@ -40,6 +41,8 @@ public class ControladorPartida implements Observador {
         fuentesConocimiento.put("agregarConjunto", new FCAgregarConjunto());
         fuentesConocimiento.put("agregarFicha", new FCAgregarFicha());
         fuentesConocimiento.put("dividirConjunto", new FCDividirConjunto());
+        fuentesConocimiento.put("agregarFichaAMazo", new FCAgregarFichaAMazo());
+        fuentesConocimiento.put("dividirCongregarFicha\"junto", new FCDividirConjunto());
         fuentesConocimiento.put("eliminarConjunto", new FCEliminarConjunto());
         fuentesConocimiento.put("eliminarFichas", new FCEliminarFichas());
         fuentesConocimiento.put("desmarcarConjuntos", new FCDesmarcarConjuntos());
@@ -60,6 +63,10 @@ public class ControladorPartida implements Observador {
         fuentesConocimiento.get("agregarFicha").ejecutar(datos);
     }
 
+    public void agregarFichaAMazo(){
+        fuentesConocimiento.get("agregarFichaAMazo").ejecutar();
+    }
+    
     public void desmarcarConjuntos() {
         fuentesConocimiento.get("desmarcarConjuntos").ejecutar();
     }
@@ -111,6 +118,17 @@ public class ControladorPartida implements Observador {
                     fuentesConocimiento.get("TerminarTurno").ejecutar();
                 } else {
                     fuentesConocimiento.get("TerminarPartida").ejecutar();
+                }
+            }
+            case "TerminarTurno" -> {
+                PartidaDTO pdto;
+                pdto = (PartidaDTO) Partida.obtenerInstancia();
+                Jugador jugador = pdto.obtenerJugador();
+
+                if (jugador.esPrimerTurno()) {
+                    ProxyServer.enviarDatos(Partida.obtenerInstancia());
+                } else {
+                    fuentesConocimiento.get("TerminarTurno").ejecutar();
                 }
             }
 
