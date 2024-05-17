@@ -4,14 +4,15 @@
  */
 package util;
 
+import DOMINIO.PartidaDTOClazz;
 import arqui.util.Datos;
 import controlador.ControladorPartida;
-import interaces.Blackboard;
-import java.io.ObjectInput;
+import interfaces.FuenteConocimiento;
+import java.util.Map;
 
 /**
  *
- * @author natsu
+ * @author Rosa preciosa chula!!
  */
 public class ProxyServer {
 
@@ -19,16 +20,25 @@ public class ProxyServer {
 
     private static ProxyServer instancia;
 
-    public void notificar(ObjectInput stream) {
+    synchronized public void notificar(Object obj) {
+
+        ControladorPartida cp = ControladorPartida.obtenerInstancia();
 
         try {
-            Datos d = (Datos) stream.readObject();
+            Datos d = (Datos) obj;
 
             switch (d.getMensaje()) {
                 case "Agregar sin conjunto" ->
                     ControladorPartida.obtenerInstancia().agregarSinConjunto(d);
-                case "terminar turno" ->
-                    ControladorPartida.obtenerInstancia().desmarcarConjuntos();
+                case "terminar turno" -> {
+
+                    Map<String, FuenteConocimiento> fuentes
+                            = ControladorPartida.obtenerInstancia().fuentesConocimiento;
+
+                    ControladorPartida
+                            .obtenerInstancia()
+                            .desmarcarConjuntos();
+                }
                 case "restaurar partida" ->
                     ControladorPartida.obtenerInstancia().restuararPartida();
                 default ->
@@ -50,13 +60,16 @@ public class ProxyServer {
         return instancia;
     }
 
-    public static void enviarDatos(Blackboard blackboard) {
+    public static void enviarDatos(PartidaDTOClazz partida, int numSocket) {
 
         try {
 
-            socket.sendData(blackboard);
+            ManejadorCliente.obtenerInstancia()
+                    .obtenerCliente(numSocket)
+                    .enviarDatos(partida);
 
         } catch (Exception e) {
+            System.out.println("Error en proxyServer ln 61");
             System.out.println(e.getMessage());
         }
 

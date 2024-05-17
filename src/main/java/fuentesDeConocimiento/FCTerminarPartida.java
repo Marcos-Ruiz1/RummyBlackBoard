@@ -16,19 +16,19 @@ import interfaces.FuenteConocimiento;
 public class FCTerminarPartida extends FuenteConocimiento {
 
     private LogicaPartida lp;
-    
+
     @Override
     public void ejecutar(Datos d) {
-        
+
     }
 
     @Override
     public void ejecutar() {
         lp = Partida.obtenerInstancia();
-        
+
         lp.terminarJuego();
-        
-        this.board.actualizarDatos();
+
+        this.board.actualizarDatos("Finalizar");
     }
 
 }

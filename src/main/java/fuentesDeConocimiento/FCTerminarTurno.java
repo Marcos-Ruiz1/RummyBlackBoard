@@ -19,7 +19,7 @@ public class FCTerminarTurno extends FuenteConocimiento {
 
     @Override
     public void ejecutar(Datos d) {
-        
+
     }
 
     @Override
@@ -28,7 +28,7 @@ public class FCTerminarTurno extends FuenteConocimiento {
 
         lp.terminarTurno();
 
-        this.board.actualizarDatos();
+        this.board.actualizarDatos("Finalizar");
     }
 
 }

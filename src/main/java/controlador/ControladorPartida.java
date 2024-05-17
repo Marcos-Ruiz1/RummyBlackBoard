@@ -14,6 +14,7 @@ import fuentesDeConocimiento.FCRestaurarPartida;
 import fuentesDeConocimiento.FCTerminarPartida;
 import fuentesDeConocimiento.FCTerminarTurno;
 import interaces.Blackboard;
+import DOMINIO.PartidaDTOClazz;
 import interaces.PartidaDTO;
 import interfaces.FuenteConocimiento;
 import interaces.Observador;
@@ -27,7 +28,7 @@ import util.ProxyServer;
  */
 public class ControladorPartida implements Observador {
 
-    private final Map<String, FuenteConocimiento> fuentesConocimiento;
+    public final Map<String, FuenteConocimiento> fuentesConocimiento;
 
     private static ControladorPartida instancia;
 
@@ -76,7 +77,6 @@ public class ControladorPartida implements Observador {
     public static ControladorPartida obtenerInstancia() {
         if (ControladorPartida.instancia == null) {
             ControladorPartida.instancia = new ControladorPartida();
-            //        Suscribir al publicar 
             Partida.obtenerPublicador().agregarObservador(ControladorPartida.instancia);
         }
 
@@ -89,7 +89,9 @@ public class ControladorPartida implements Observador {
         String mensaje = blackboard.obtenerMensaje();
 
         if (blackboard.hayMensajeError()) {
-            ProxyServer.enviarDatos(blackboard);
+
+            ProxyServer.enviarDatos(new PartidaDTOClazz(Partida.obtenerInstancia()),
+                    Partida.obtenerInstancia().getNumeroJugador());
             return;
         }
 
@@ -115,7 +117,8 @@ public class ControladorPartida implements Observador {
             }
 
             default ->
-                ProxyServer.enviarDatos(Partida.obtenerInstancia());
+                ProxyServer.enviarDatos(new PartidaDTOClazz(Partida.obtenerInstancia()),
+                        Partida.obtenerInstancia().getNumeroJugador());
 
         }
 
