@@ -43,7 +43,8 @@ public class Cliente extends Thread {
     public void enviarDatos(PartidaDTOClazz partida) {
 
         try {
-            ous.writeObject(partida);
+            ous.writeUnshared(partida);
+            ous.reset();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();

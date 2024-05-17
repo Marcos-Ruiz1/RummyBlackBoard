@@ -36,8 +36,11 @@ public class RummyBlackBoard {
         Ficha fichamazo1 = new FichaNumerica((byte) 13);
         fichamazo1.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo2 = new FichaNumerica((byte) 14);
+        fichamazo2.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo3 = new FichaNumerica((byte) 15);
+        fichamazo3.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo4 = new FichaNumerica((byte) 16);
+        fichamazo4.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo5 = new FichaNumerica((byte) 17);
         fichamazo5.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo6 = new FichaNumerica((byte) 18);
@@ -56,11 +59,17 @@ public class RummyBlackBoard {
 
         // Crear nuevas fichas para el mazo del jugador 2
         Ficha fichamazo7 = new FichaNumerica((byte) 19);
+        fichamazo7.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo8 = new FichaNumerica((byte) 20);
+        fichamazo8.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo9 = new FichaNumerica((byte) 21);
+        fichamazo9.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo10 = new FichaNumerica((byte) 22);
+        fichamazo10.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo11 = new FichaNumerica((byte) 23);
+        fichamazo11.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo12 = new FichaNumerica((byte) 24);
+        fichamazo12.setGrupoFicha(GrupoFicha.ROJO);
 
         // Crear una lista para almacenar las fichas en el mazo del jugador 2
         List<Ficha> fichasenmazo2 = new ArrayList<>();
@@ -83,10 +92,13 @@ public class RummyBlackBoard {
         //Creación de fichas para los conjuntos
         FichaNumerica fichanumerica1 = new FichaNumerica();
         fichanumerica1.setNumero((byte) 10);
+        fichanumerica1.setGrupoFicha(GrupoFicha.ROJO);
         FichaNumerica fichanumerica2 = new FichaNumerica();
         fichanumerica2.setNumero((byte) 11);
+        fichanumerica2.setGrupoFicha(GrupoFicha.ROJO);
         FichaNumerica fichanumerica3 = new FichaNumerica();
         fichanumerica3.setNumero((byte) 12);
+        fichanumerica3.setGrupoFicha(GrupoFicha.ROJO);
 
         List<Ficha> fichas = new ArrayList<>();
 
@@ -103,8 +115,11 @@ public class RummyBlackBoard {
 
         //Pila
         Ficha fichamazo13 = new FichaNumerica((byte) 30);
+        fichamazo13.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo14 = new FichaNumerica((byte) 31);
+        fichamazo14.setGrupoFicha(GrupoFicha.ROJO);
         Ficha fichamazo15 = new FichaNumerica((byte) 32);
+        fichamazo15.setGrupoFicha(GrupoFicha.ROJO);
         List<Ficha> fichasPozo = new ArrayList<>();
         fichasPozo.add(fichamazo13);
         fichasPozo.add(fichamazo14);
