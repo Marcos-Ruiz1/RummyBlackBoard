@@ -41,6 +41,8 @@ public class ProxyServer {
                 }
                 case "restaurar partida" ->
                     ControladorPartida.obtenerInstancia().restuararPartida();
+                case "agregar ficha a mazo" ->
+                    ControladorPartida.obtenerInstancia().agregarFichaAMazo();
                 default ->
                     throw new AssertionError();
             }
@@ -76,7 +78,7 @@ public class ProxyServer {
     }
 
     private ProxyServer() {
-
+        
     }
 
 }
